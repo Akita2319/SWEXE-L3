@@ -7,8 +7,13 @@ gem "rails", "~> 8.0.2", ">= 8.0.2.1"
 gem "propshaft"
 
 # データベース
-gem "sqlite3", ">= 2.1", group: :development   # 開発環境用
-gem "pg"                                        # production (Render) 用
+group :development, :test do
+  gem "sqlite3", ">= 2.1"   # 開発/テスト環境用
+end
+
+group :production do
+  gem "pg"                  # production (Render) 用
+end
 
 # Webサーバー
 gem "puma", ">= 5.0"
