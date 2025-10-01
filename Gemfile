@@ -7,13 +7,8 @@ gem "rails", "~> 8.0.2", ">= 8.0.2.1"
 gem "propshaft"
 
 # データベース
-group :development, :test do
-  gem "sqlite3", ">= 2.1"   # 開発/テスト環境用
-end
-
-group :production do
-  gem "pg"                  # production (Render) 用
-end
+gem "sqlite3", ">= 2.1", group: [:development, :test]   # 開発/テスト用
+gem "pg"                                                # production / 確認用
 
 # Webサーバー
 gem "puma", ">= 5.0"
@@ -50,9 +45,7 @@ group :development, :test do
 
   # コード整形
   gem "rubocop-rails-omakase", require: false
-end
 
-group :development do
   # 開発用コンソール
   gem "web-console"
 end
