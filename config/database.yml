@@ -1,26 +1,22 @@
+# config/database.yml
+
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
-  host: <%= ENV['POSTGRES_HOST'] %>
-  port: 5432
+  pool: 5
+  url: <%= ENV['DATABASE_URL'] %>
 
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  <<: *default
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  <<: *default
 
 production:
   <<: *default
-  database: <%= ENV['POSTGRES_DB'] %>
 
-# Action Cable 用のデータベース設定
+queue:
+  <<: *default   # queueもproductionと同じDBを使用
+
 cable:
   <<: *default
-  database: <%= ENV['POSTGRES_DB'] %>
