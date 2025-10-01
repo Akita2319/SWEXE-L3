@@ -1,0 +1,17 @@
+<%= form_with model: @book, local: true do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title, style: "width:100%;" %>
+  </p>
+  <p>
+    <%= f.label :author %><br>
+    <%= f.text_field :author, style: "width:100%;" %>
+  </p>
+  <p>
+    <%= f.label :published_on %><br>
+    <%= f.date_select :published_on, start_year: 1970, end_year: Time.current.year %>
+  </p>
+  <p>
+    <%= f.submit style: "padding:5px 10px; background-color:green; color:white; border-radius:5px;" %>
+  </p>
+<% end %>
