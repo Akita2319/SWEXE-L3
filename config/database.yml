@@ -1,22 +1,28 @@
-# config/database.yml
-
 default: &default
-  adapter: postgresql
-  encoding: unicode
+  adapter: sqlite3
   pool: 5
-  url: <%= ENV['DATABASE_URL'] %>
+  timeout: 5000
 
 development:
   <<: *default
+  database: db/development.sqlite3
 
 test:
   <<: *default
+  database: db/test.sqlite3
 
 production:
-  <<: *default
+  primary: &primary_production
+    adapter: postgresql
+    encoding: unicode
+    pool: 5
+    url: <%= ENV['DATABASE_URL'] %>
 
-queue:
-  <<: *default   # queueもproductionと同じDBを使用
+  cache:
+    <<: *primary_production
 
-cable:
-  <<: *default
+  queue:
+    <<: *primary_production
+
+  cable:
+    <<: *primary_production
