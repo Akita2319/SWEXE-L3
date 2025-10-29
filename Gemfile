@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Rails本体
-gem "rails", "~> 8.0.2", ">= 8.0.2.1"
+gem "rails", "~> 8.1.1"
 
 # アセット管理
 gem "propshaft"
